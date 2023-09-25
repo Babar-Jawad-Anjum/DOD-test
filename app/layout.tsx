@@ -19,19 +19,22 @@ export default function RootLayout({
     <Providers>
       <html lang="en">
         <body className={`min-h-screen bg-[#EFF5F6] relative`}>
-          <main>
-            <nav className="bg-white h-[80px] relative flex">
-              <Link
-                href="/"
-                className="text-primary absolute left-10  self-center"
-              >
-                DermOnDemand
-              </Link>
+          <div className="flex flex-col h-screen">
+            <nav>
+              <div className="bg-white w-full  h-[80px] relative flex">
+                <Link
+                  href="/"
+                  className="text-primary absolute left-10  self-center"
+                >
+                  DermOnDemand
+                </Link>
+              </div>
             </nav>
-
-            {children}
+            <main className="flex-1 flex justify-center items-center">
+              {children}
+            </main>
             <Footer />
-          </main>
+          </div>
         </body>
       </html>
     </Providers>
