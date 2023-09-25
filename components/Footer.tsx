@@ -1,5 +1,15 @@
 export const Footer = () => {
   return (
-    <footer className="bg-white absolute bottom-0 h-10 w-full">test</footer>
+    <footer className="bg-white absolute -bottom-20 sm:bottom-2 sm:h-10 w-full">
+      <div className="py-[10px] text-center sm:flex sm:justify-between sm:px-20">
+        <span>© 2023 DermOnDemand. All rights reserved.</span>
+
+        <ul className="sm:flex">
+          <li>Term of Use</li>
+          <li>Privacy Policy</li>
+          <li>Consent</li>
+        </ul>
+      </div>
+    </footer>
   );
 };
