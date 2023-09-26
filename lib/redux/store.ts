@@ -1,13 +1,12 @@
-import { configureStore } from "@reduxjs/toolkit"
-import { setupListeners } from "@reduxjs/toolkit/dist/query"
+import { configureStore } from '@reduxjs/toolkit'
+import { setupListeners } from '@reduxjs/toolkit/dist/query'
 import {
   useDispatch as useDispatchBase,
   useSelector as useSelectorBase,
-} from "react-redux"
+} from 'react-redux'
 
-
-import { middleware } from "./middleware"
-import { appReducer } from "./reducers"
+import { middleware } from './middleware'
+import { appReducer } from './reducers'
 
 // const persistConfig = {
 //   key: `root`,
@@ -26,9 +25,7 @@ export const store = configureStore({
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       serializableCheck: false,
-    }).concat(
-      middleware,
-    ),
+    }).concat(middleware),
 })
 
 // export const persistor = persistStore(store)

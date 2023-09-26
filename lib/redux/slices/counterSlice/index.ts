@@ -1,5 +1,6 @@
+/* eslint-disable no-param-reassign */
 /* Core */
-import { createSlice, Draft, type PayloadAction } from '@reduxjs/toolkit'
+import { createSlice, type PayloadAction } from '@reduxjs/toolkit'
 
 /* Instruments */
 
@@ -24,10 +25,7 @@ export const counterSlice = createSlice({
       state.value += action.payload
     },
   },
-
 })
-
-
 
 export interface UserState {
   nonceId: string

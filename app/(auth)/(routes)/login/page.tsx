@@ -1,17 +1,16 @@
-"use client";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { useForm } from "react-hook-form";
+'use client'
 
-import React from "react";
-import Link from "next/link";
+import Link from 'next/link'
+
+import { Button } from '@/components/ui/button'
+import { Input } from '@/components/ui/input'
 
 const Login = () => {
   return (
-    <div className="w-full px-4 flex justify-center ">
+    <div className="flex w-full justify-center px-4 ">
       <div className="py-1">
-        <h2 className="font-semibold text-3xl mt-24">Login</h2>
-        <p className="font-semibold text-xl mt-2 mb-12">Welcome Back!</p>
+        <h2 className="mt-24 text-3xl font-semibold">Login</h2>
+        <p className="mb-12 mt-2 text-xl font-semibold">Welcome Back!</p>
 
         <Input type="text" placeholder="Email" id="email" title="Email" />
         <Input
@@ -20,15 +19,15 @@ const Login = () => {
           id="password"
           title="Password"
         />
-        <div className="text-primary text-sm font-normal mt-4 mb-12">
+        <div className="mb-12 mt-4 text-sm font-normal text-primary">
           <Link href="/forgot">Forgot Password?</Link>
         </div>
-        <div className="w-full sm:w-[500px] flex justify-center  my-3 sm:mb-[39%]">
-          <Button className="w-full sm:w-[250px] h-[54px]">Login</Button>
+        <div className="my-3 flex w-full justify-center  sm:mb-[39%] sm:w-[500px]">
+          <Button className="h-[54px] w-full sm:w-[250px]">Login</Button>
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Login;
+export default Login

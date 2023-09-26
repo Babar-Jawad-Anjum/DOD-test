@@ -1,50 +1,51 @@
-"use client";
+'use client'
 
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import React from "react";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import * as z from "zod";
+import { zodResolver } from '@hookform/resolvers/zod'
+import { useForm } from 'react-hook-form'
+import * as z from 'zod'
+
+import { Button } from '@/components/ui/button'
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/components/ui/form";
+} from '@/components/ui/form'
+import { Input } from '@/components/ui/input'
+
 const formSchema = z.object({
   email: z
     .string()
-    .min(1, { message: "This field has to be filled." })
-    .email("This is not a valid email."),
+    .min(1, { message: 'This field has to be filled.' })
+    .email('This is not a valid email.'),
   // .refine((e) => e === "abcd@fg.com", "This email is not in our database"),
   password: z.string().min(8),
-});
+})
 
 const SignUpPage = () => {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      email: "",
-      password: "",
+      email: '',
+      password: '',
     },
-  });
+  })
 
   // 2. Define a submit handler.
   function onSubmit(values: z.infer<typeof formSchema>) {
     // Do something with the form values.
     // ✅ This will be type-safe and validated.
-    console.log(values);
+    // eslint-disable-next-line no-console
+    console.log(values)
   }
 
   return (
-    <div className="w-full px-4 flex justify-center">
+    <div className="flex w-full justify-center px-4">
       <div>
-        <h2 className="font-semibold text-3xl mt-24">Join DermOnDemand</h2>
-        <p className="font-semibold text-lg mt-2 mb-12 max-w-lg">
+        <h2 className="mt-24 text-3xl font-semibold">Join DermOnDemand</h2>
+        <p className="mb-12 mt-2 max-w-lg text-lg font-semibold">
           A few minutes of your time to sign up then access to 24/7 dermatology
           care
         </p>
@@ -80,7 +81,7 @@ const SignUpPage = () => {
                 </FormItem>
               )}
             />
-            <ul className="text-sm space-y-1 my-1">
+            <ul className="my-1 space-y-1 text-sm">
               <li>One lowercase letter</li>
               <li>One uppercase letter</li>
               <li>One number</li>
@@ -100,8 +101,8 @@ const SignUpPage = () => {
                 </FormItem>
               )}
             />
-            <div className="w-full sm:w-[500px] mx-auto my-10">
-              <Button className="w-full sm:w-[250px] h-[54px]" type="submit">
+            <div className="mx-auto my-10 w-full sm:w-[500px]">
+              <Button className="h-[54px] w-full sm:w-[250px]" type="submit">
                 Next
               </Button>
             </div>
@@ -109,7 +110,7 @@ const SignUpPage = () => {
         </Form>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default SignUpPage;
+export default SignUpPage
