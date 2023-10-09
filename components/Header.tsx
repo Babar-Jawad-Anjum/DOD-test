@@ -36,8 +36,9 @@ const Header = () => {
           </Link>
         </div>
       </div>
-
-      <Button className="hover:bg-[#3c8790]">Start a Visit</Button>
+      <Link href={'/visit/step-1'}>
+        <Button className="hover:bg-[#3c8790]">Start a Visit</Button>
+      </Link>
     </header>
   )
 }

@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
+import { RootState } from '../..'
 
 const initialState: authSliceState = {
   isAuthenticated: false,
@@ -27,8 +28,8 @@ export const authSlice = createSlice({
   },
 })
 
-// export const getIsAuthenticated = (state: RootState) =>
-//   state.auth.isAuthenticated
+export const getIsAuthenticated = (state: RootState) =>
+  state.auth.isAuthenticated
 
 export const { setUser, logoutUser } = authSlice.actions
 export const auth = authSlice.reducer

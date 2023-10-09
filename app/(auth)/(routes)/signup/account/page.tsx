@@ -14,7 +14,10 @@ import {
   FormMessage,
 } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
+import { getLoadingState } from '@/lib/redux/slices/loaderSlice'
+import { useRouter } from 'next/navigation'
 import { useRef, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 
 const formSchema = z.object({
   firstName: z.string().min(1, { message: 'First Name is required' }),
@@ -32,6 +35,10 @@ const formSchema = z.object({
 })
 
 const SignUpPage = () => {
+  const router = useRouter()
+  const dispatch = useDispatch()
+  const isLoading = useSelector(getLoadingState)
+
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -51,11 +58,21 @@ const SignUpPage = () => {
   })
 
   // 2. Define a submit handler.
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    // Do something with the form values.
-    // ✅ This will be type-safe and validated.
-    // eslint-disable-next-line no-console
-    console.log('values are')
+  async function onSubmit(values: z.infer<typeof formSchema>) {
+    // try {
+    //   dispatch(enableLoading())
+    //   const result = await registerUser(data)
+    //   if (result.error) {
+    //     ErrorToast(result.error.data.message)
+    //   } else {
+    //     SuccessToast(result.data.message)
+    //     router.push('/signup/account')
+    //   }
+    // } catch (error) {
+    //   console.error('An error occurred:', error)
+    // } finally {
+    //   dispatch(disableLoading())
+    // }
     console.log(values)
   }
 

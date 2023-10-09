@@ -2,17 +2,21 @@
 
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
-import toast, { Toaster } from 'react-hot-toast'
 
 import { BsArrowRight } from 'react-icons/bs'
 import { HiOutlineMinusSm } from 'react-icons/hi'
 import { RxCross2 } from 'react-icons/rx'
 import { TiTick } from 'react-icons/ti'
 
+import Loader from '@/components/loader/Loader'
 import { Button } from '@/components/ui/button'
+import { disableLoading, enableLoading } from '@/lib/redux/actions'
+import { getLoadingState } from '@/lib/redux/slices/loaderSlice'
+import { ErrorToast, SuccessToast } from '@/lib/utils'
 import { useRegisterUserMutation } from '@/services/authApi/authApi'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
+import { useDispatch, useSelector } from 'react-redux'
 
 const SignUpPage = () => {
   const {
@@ -23,6 +27,8 @@ const SignUpPage = () => {
   } = useForm()
 
   const router = useRouter()
+  const dispatch = useDispatch()
+  const isLoading = useSelector(getLoadingState)
 
   //Flags to check if user clicks login button without entering credentials
   const [emailEmptyClick, setEmailEmptyClick] = useState(true)
@@ -82,23 +88,29 @@ const SignUpPage = () => {
     if (isValidEmail && isValidPassword) {
       //Check if password and confirm password are same
       if (data.password === confirmPassword) {
-        console.log('password match')
-        router.push('/signup/account')
+        //Calling register user api
+        try {
+          dispatch(enableLoading())
+          const result = await registerUser(data)
+          if (result.error) {
+            ErrorToast(result.error.data.message)
+          } else {
+            SuccessToast(result.data.message)
+            router.push('/signup/account')
+          }
+        } catch (error) {
+          console.error('An error occurred:', error)
+        } finally {
+          dispatch(disableLoading())
+        }
       } else {
         if (confirmPassword.length === 0) {
           setConfirmPassEmptyClick(true)
         } else {
           setConfirmPassEmptyClick(false)
-          toast.error('Passwords Mismatched', {
-            duration: 3000,
-          })
+          ErrorToast('Password Mismatched')
         }
       }
-
-      //Calling register user endpoint
-      const result = await registerUser(data)
-      console.log('result from signup')
-      console.log(result)
     }
   }
 
@@ -212,8 +224,8 @@ const SignUpPage = () => {
 
   return (
     <>
-      <Toaster />
       <div className="p-4 md:my-[60px]">
+        {isLoading ? <Loader /> : null}
         <h2 className="text-2xl font-bold">Join DermOnDemand</h2>
         <p className="mt-2 mb-10 text-sm">
           A few minutes of your time to sign up, then access 24/7 dermatology

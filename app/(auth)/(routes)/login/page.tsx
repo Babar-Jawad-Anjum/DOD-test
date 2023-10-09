@@ -2,9 +2,11 @@
 
 import { zodResolver } from '@hookform/resolvers/zod'
 import Link from 'next/link'
+import { useRouter } from 'next/navigation'
 import { useForm } from 'react-hook-form'
 import * as z from 'zod'
 
+import Loader from '@/components/loader/Loader'
 import { Button } from '@/components/ui/button'
 import {
   Form,
@@ -15,7 +17,14 @@ import {
   FormMessage,
 } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
+import {
+  disableLoading,
+  enableLoading,
+  getLoadingState,
+} from '@/lib/redux/slices/loaderSlice'
+import { ErrorToast, SuccessToast } from '@/lib/utils'
 import { useLoginUserMutation } from '@/services/authApi/authApi'
+import { useDispatch, useSelector } from 'react-redux'
 
 const formSchema = z.object({
   email: z
@@ -26,6 +35,12 @@ const formSchema = z.object({
 })
 
 const Login = () => {
+  const router = useRouter()
+  const dispatch = useDispatch()
+  const isLoading = useSelector(getLoadingState)
+
+  const [loginUser] = useLoginUserMutation()
+
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -34,19 +49,29 @@ const Login = () => {
     },
   })
 
-  const [loginUser] = useLoginUserMutation()
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
-    const result = await loginUser(values)
-
-    console.log('result from api')
-    console.log(result)
+    //handle login response
+    try {
+      dispatch(enableLoading())
+      const result = await loginUser(values)
+      if (result.error) {
+        ErrorToast(result.error.data.message)
+      } else {
+        SuccessToast(result.data.message)
+        router.push('/visit/step-1')
+      }
+    } catch (error) {
+      console.error('An error occurred:', error)
+    } finally {
+      dispatch(disableLoading())
+    }
   }
 
   return (
     <div className="p-4 md:my-[60px]">
       <h2 className="text-2xl font-bold">Login</h2>
       <p className="mt-2 mb-8 text-md">Welcome Back!</p>
-
+      {isLoading ? <Loader /> : null}
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="">
           <FormField

@@ -1,12 +1,13 @@
 import { combineReducers } from '@reduxjs/toolkit'
 
-import { authApi } from '@/services/authApi/authApi'
 import { auth } from './slices/authSlice'
-import { counter } from './slices/counterSlice'
+import { loader } from './slices/loaderSlice'
+
+import { authApi } from '@/services/authApi/authApi'
 
 export const appReducer = combineReducers({
-  counter,
   auth,
+  loader,
 
   [authApi.reducerPath]: authApi.reducer,
 })

@@ -5,7 +5,6 @@ import Link from 'next/link'
 import { useForm } from 'react-hook-form'
 import * as z from 'zod'
 
-import Loader from '@/components/loader/Loader'
 import { Button } from '@/components/ui/button'
 import {
   Form,
@@ -81,7 +80,6 @@ const ForgotPage = () => {
           </div>
         </form>
       </Form>
-      <Loader />
     </div>
   )
 }
