@@ -26,7 +26,6 @@ export const counterSlice = createSlice({
     },
   },
 })
-
 export interface UserState {
   nonceId: string
 }

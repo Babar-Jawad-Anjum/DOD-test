@@ -1,9 +1,9 @@
 import './globals.css'
 
 import type { Metadata } from 'next'
-import Link from 'next/link'
 
 import { Footer } from '@/components/Footer'
+import Header from '@/components/Header'
 import { Providers } from '@/lib/provider'
 
 export const metadata: Metadata = {
@@ -19,23 +19,10 @@ export default function RootLayout({
   return (
     <Providers>
       <html lang="en">
-        <body className="relative min-h-screen bg-[#EFF5F6]">
-          <div className="flex h-screen flex-col">
-            <nav>
-              <div className="relative flex  h-[80px] w-full bg-white">
-                <Link
-                  href="/"
-                  className="absolute left-10 self-center  text-primary"
-                >
-                  DermOnDemand
-                </Link>
-              </div>
-            </nav>
-            <main className="flex flex-1 items-center justify-center">
-              {children}
-            </main>
-            <Footer />
-          </div>
+        <body className="bg-[#EFF5F6]">
+          <Header />
+          {children}
+          <Footer />
         </body>
       </html>
     </Providers>
