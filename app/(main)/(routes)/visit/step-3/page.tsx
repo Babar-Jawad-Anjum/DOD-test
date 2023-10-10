@@ -3,7 +3,7 @@ import Link from 'next/link'
 
 const Step3 = () => {
   return (
-    <div className="p-8">
+    <div>
       <h4 className="font-semibold text-xl mb-7">
         When did this skin concern start?
       </h4>

@@ -4,7 +4,7 @@ import Link from 'next/link'
 
 const Step4 = () => {
   return (
-    <div className="p-8">
+    <div>
       <h4 className="font-semibold text-xl mb-2">
         Has this skin concern occurred before?
       </h4>

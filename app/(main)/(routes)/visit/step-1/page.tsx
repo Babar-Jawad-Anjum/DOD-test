@@ -5,10 +5,10 @@ import { TiTick } from 'react-icons/ti'
 
 const Step1 = () => {
   return (
-    <div className="p-8">
+    <div>
       <h4 className="font-semibold text-xl mb-8">Who needs help today?</h4>
       <p className="text-sm text-primary font-semibold text-end mb-3">
-        <Link href={'/addDependent'}>+ Add Dependent</Link>
+        <Link href={'/add-dependent'}>+ Add Dependent</Link>
       </p>
       <div className="card bg-[#E3EEEF] rounded-lg my-2 px-5 py-3 flex items-center justify-between">
         <div className="wrapper flex items-center">

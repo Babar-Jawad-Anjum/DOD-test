@@ -3,7 +3,7 @@ import Link from 'next/link'
 
 const Step5 = () => {
   return (
-    <div className="p-8">
+    <div>
       <h4 className="font-semibold text-xl mb-4">
         Do you have any of these symptoms?
       </h4>

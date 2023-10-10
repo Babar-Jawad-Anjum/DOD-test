@@ -92,3 +92,13 @@ body:root {
   top: 0;
   left: 0;
 }
+.modal {
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+  background-color: white;
+  text-align: center;
+  width: 18rem;
+  z-index: 10;
+  position: fixed;
+  top: 20vh;
+  left: calc(50% - 9rem);
+}
