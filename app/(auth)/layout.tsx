@@ -1,13 +1,11 @@
-import Link from "next/link";
-
 const AuthLayout = ({ children }: { children: React.ReactNode }) => {
   return (
-    <div className="flex justify-center items-center">
-      <div className="flex justify-center items-center bg-white mt-3 h-[500px] w-1/2">
+    <div className="flex items-center justify-center p-3">
+      <div className="m-5 relative rounded-lg bg-white shadow-md w-[100%] md:w-[60%] px-[10px] sm:px-[130px]">
         {children}
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default AuthLayout;
+export default AuthLayout

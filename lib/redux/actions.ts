@@ -1,1 +1,2 @@
-export { increment, incrementByAmount } from "./slices/counterSlice"
+/* eslint-disable prettier/prettier */
+export { disableLoading, enableLoading } from './slices/loaderSlice'

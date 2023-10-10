@@ -1,4 +1,4 @@
-/* Core */
+// eslint-disable-next-line import/no-extraneous-dependencies
 import { createLogger } from 'redux-logger'
 
 const middleware = [
