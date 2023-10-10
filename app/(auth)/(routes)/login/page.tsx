@@ -54,12 +54,12 @@ const Login = () => {
     try {
       dispatch(enableLoading())
       const result = await loginUser(values)
-      if (result.error) {
-        ErrorToast(result.error.data.message)
-      } else {
-        SuccessToast(result.data.message)
-        router.push('/visit/step-1')
-      }
+      // if (result.error) {
+      //   ErrorToast(result.error.data.message)
+      // } else {
+      SuccessToast(result.data.message)
+      router.push('/visit/step-1')
+      // }
     } catch (error) {
       console.error('An error occurred:', error)
     } finally {

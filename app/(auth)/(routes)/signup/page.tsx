@@ -92,12 +92,12 @@ const SignUpPage = () => {
         try {
           dispatch(enableLoading())
           const result = await registerUser(data)
-          if (result.error) {
-            ErrorToast(result.error.data.message)
-          } else {
-            SuccessToast(result.data.message)
-            router.push('/signup/account')
-          }
+          // if (result.error) {
+          //   ErrorToast(result.error.data.message)
+          // } else {
+          SuccessToast(result.data.message)
+          router.push('/signup/account')
+          // }
         } catch (error) {
           console.error('An error occurred:', error)
         } finally {
